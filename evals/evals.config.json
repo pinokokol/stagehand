@@ -6,7 +6,7 @@
     },
     {
       "name": "expect_act_timeout",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "extract_repo_name",
@@ -18,7 +18,7 @@
     },
     {
       "name": "instructions",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "bidnet",
@@ -71,7 +71,7 @@
     },
     {
       "name": "peeler_complex",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "sciquest",
@@ -257,11 +257,11 @@
     },
     {
       "name": "observe_iframes1",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "observe_iframes2",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "extract_hamilton_weather",
@@ -293,19 +293,19 @@
     },
     {
       "name": "scroll_50",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "scroll_75",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "nextChunk",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     },
     {
       "name": "prevChunk",
-      "categories": ["unit"]
+      "categories": ["unit", "combination"]
     }
   ]
 }

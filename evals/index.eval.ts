@@ -19,16 +19,19 @@ import { filterByCategory, filterByEvalName, useTextExtract } from "./args";
 import { generateExperimentName } from "./utils";
 import { exactMatch, errorMatch } from "./scoring";
 import { tasksByName, MODELS } from "./taskConfig";
-import { Eval } from "braintrust";
+import { Eval, wrapAISDKModel, wrapOpenAI } from "braintrust";
 import { EvalFunction, SummaryResult, Testcase } from "@/types/evals";
 import { EvalLogger } from "./logger";
-import { AvailableModel } from "@/dist";
+import { AvailableModel, LLMClient } from "@/dist";
 import { env } from "./env";
 import dotenv from "dotenv";
 import { StagehandEvalError } from "@/types/stagehandErrors";
 import { CustomOpenAIClient } from "@/examples/external_clients/customOpenAI";
 import OpenAI from "openai";
 import { initStagehand } from "./initStagehand";
+import { AISdkClient } from "@/examples/external_clients/aisdk";
+import { google } from "@ai-sdk/google";
+
 dotenv.config();
 
 /**
@@ -230,13 +233,20 @@ const generateFilteredTestcases = (): Testcase[] => {
           }
 
           // Execute the task
-          const llmClient = new CustomOpenAIClient({
+          let llmClient: LLMClient = new CustomOpenAIClient({
             modelName: input.modelName as AvailableModel,
-            client: new OpenAI({
-              apiKey: process.env.BRAINTRUST_API_KEY,
-              baseURL: "https://api.braintrust.dev/v1/proxy",
-            }),
+            client: wrapOpenAI(
+              new OpenAI({
+                apiKey: process.env.BRAINTRUST_API_KEY,
+                baseURL: "https://api.braintrust.dev/v1/proxy",
+              }),
+            ),
           });
+          if (input.modelName.startsWith("gemini")) {
+            llmClient = new AISdkClient({
+              model: wrapAISDKModel(google("gemini-2.0-flash")),
+            });
+          }
           const taskInput = await initStagehand({
             logger,
             llmClient,

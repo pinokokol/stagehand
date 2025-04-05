@@ -40,6 +40,7 @@ const StagehandConfig = {
   headless: false,
   enableCaching,
   domSettleTimeoutMs: 30_000,
+  disablePino: true,
 };
 
 /**
@@ -74,7 +75,7 @@ export const initStagehand = async ({
     ...(domSettleTimeoutMs && { domSettleTimeoutMs }),
     actTimeoutMs,
     ...configOverrides,
-    logger: logger.log,
+    logger: logger.log.bind(logger),
   };
 
   const stagehand = new Stagehand(config);
