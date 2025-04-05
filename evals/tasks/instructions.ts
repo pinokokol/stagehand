@@ -20,7 +20,7 @@ export const instructions: EvalFunction = async ({
     const url = page.url();
 
     const isCorrectUrl =
-      url === "https://docs.browserbase.com/introduction/getting-started";
+      url === "https://docs.browserbase.com/introduction/what-is-browserbase";
 
     return {
       _success: isCorrectUrl,

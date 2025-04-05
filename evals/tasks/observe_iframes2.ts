@@ -10,6 +10,7 @@ export const observe_iframes2: EvalFunction = async ({
   const stagehand = new Stagehand({
     ...stagehandConfig,
   });
+  await stagehand.init();
 
   await stagehand.page.goto(
     "https://iframetester.com/?url=https://shopify.com",

@@ -11,6 +11,7 @@ export const nextChunk: EvalFunction = async ({
     ...stagehandConfig,
     domSettleTimeoutMs: 3000,
   });
+  await stagehand.init();
 
   await stagehand.page.goto("https://www.apartments.com/san-francisco-ca/");
   await stagehand.page.act({

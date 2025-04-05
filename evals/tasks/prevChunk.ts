@@ -11,6 +11,7 @@ export const prevChunk: EvalFunction = async ({
     ...stagehandConfig,
     domSettleTimeoutMs: 3000,
   });
+  await stagehand.init();
 
   await stagehand.page.goto(
     "https://browserbase.github.io/stagehand-eval-sites/sites/aigrant/",

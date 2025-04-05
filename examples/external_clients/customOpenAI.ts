@@ -50,12 +50,9 @@ export class CustomOpenAIClient extends LLMClient {
       message: "starting chat completion",
       level: 1,
       auxiliary: {
-        options: {
-          value: JSON.stringify(options),
-          type: "object",
-        },
         client: {
           value: JSON.stringify({
+            modelName: this.modelName,
             apiKey: this.client.apiKey,
             baseURL: this.client.baseURL,
           }),
