@@ -78,7 +78,9 @@ export class EvalLogger {
    */
   log(logLine: LogLine) {
     console.log(logLineToString(logLine));
-    this.logs.push(parseLogLine(logLine));
+    if (this.logs) {
+      this.logs.push(parseLogLine(logLine));
+    }
   }
 
   /**

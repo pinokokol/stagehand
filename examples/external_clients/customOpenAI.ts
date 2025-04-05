@@ -45,6 +45,29 @@ export class CustomOpenAIClient extends LLMClient {
     retries = 3,
     logger,
   }: CreateChatCompletionOptions): Promise<T> {
+    logger({
+      category: "openai",
+      message: "starting chat completion",
+      level: 1,
+      auxiliary: {
+        options: {
+          value: JSON.stringify(options),
+          type: "object",
+        },
+        client: {
+          value: JSON.stringify({
+            apiKey: this.client.apiKey,
+            baseURL: this.client.baseURL,
+          }),
+          type: "object",
+        },
+        modelName: {
+          value: this.modelName,
+          type: "string",
+        },
+      },
+    });
+
     const { image, requestId, ...optionsWithoutImageAndRequestId } = options;
 
     // TODO: Implement vision support
