@@ -6,7 +6,7 @@
     },
     {
       "name": "expect_act_timeout",
-      "categories": ["unit", "combination"]
+      "categories": ["unit"]
     },
     {
       "name": "extract_repo_name",
@@ -14,7 +14,7 @@
     },
     {
       "name": "amazon_add_to_cart",
-      "categories": ["act"]
+      "categories": ["experimental"]
     },
     {
       "name": "instructions",
@@ -197,14 +197,6 @@
     },
     {
       "name": "panamcs",
-      "categories": ["observe"]
-    },
-    {
-      "name": "shopify_homepage",
-      "categories": ["observe"]
-    },
-    {
-      "name": "vanta",
       "categories": ["observe"]
     },
     {
