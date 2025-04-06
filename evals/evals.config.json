@@ -249,11 +249,11 @@
     },
     {
       "name": "observe_iframes1",
-      "categories": ["unit", "combination"]
+      "categories": ["unit", "observe"]
     },
     {
       "name": "observe_iframes2",
-      "categories": ["unit", "combination"]
+      "categories": ["unit", "observe"]
     },
     {
       "name": "extract_hamilton_weather",
@@ -285,19 +285,19 @@
     },
     {
       "name": "scroll_50",
-      "categories": ["unit", "combination"]
+      "categories": ["unit", "act"]
     },
     {
       "name": "scroll_75",
-      "categories": ["unit", "combination"]
+      "categories": ["unit", "act"]
     },
     {
       "name": "nextChunk",
-      "categories": ["unit", "combination"]
+      "categories": ["unit", "act"]
     },
     {
       "name": "prevChunk",
-      "categories": ["unit", "combination"]
+      "categories": ["unit", "act"]
     }
   ]
 }
