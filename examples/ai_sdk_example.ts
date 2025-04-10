@@ -13,20 +13,36 @@ async function example() {
   });
 
   await stagehand.init();
-  await stagehand.page.goto("https://news.ycombinator.com");
+  await stagehand.page.goto("https://www.avto.net/");
 
-  const { story } = await stagehand.page.extract({
-    instruction: "extract the title of the top story on the page",
+  //await stagehand.page.waitForLoadState("networkidle");
+
+  await stagehand.page.act("Click on a button with text 'Dovoli piškotke'");
+
+  await stagehand.page.act("Select the search filters: Brand - Mercedes-Benz");
+
+  await stagehand.page.act("Click on a button with text 'Iskanje vozil'");
+
+  const data = await stagehand.page.extract({
+    instruction:
+      "Extract all the listings in the first page of the search results",
     schema: z.object({
-      story: z.string().describe("the top story on the page"),
+      listings: z
+        .array(
+          z.object({
+            title: z.string().describe("The title of the listing"),
+            price: z.string().describe("The price of the listing"),
+            image: z.string().describe("The image of the listing"),
+            link: z.string().describe("The link of the listing"),
+          }),
+        )
+        .describe("The listings in the first page of the search results"),
     }),
   });
 
-  console.log("The top story is:", story);
+  console.log(data);
 
-  await stagehand.page.act("click the first story");
-
-  await stagehand.close();
+  //await stagehand.close();
 }
 
 (async () => {

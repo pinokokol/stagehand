@@ -327,23 +327,23 @@ export class StagehandPage {
               event: keyof PlaywrightPage["on"],
               listener: Parameters<PlaywrightPage["on"]>[1],
             ) => {
-              if (event === "popup") {
-                return this.context.on("page", async (page: PlaywrightPage) => {
-                  const newContext = await StagehandContext.init(
-                    page.context(),
-                    stagehand,
-                  );
-                  const newStagehandPage = new StagehandPage(
-                    page,
-                    stagehand,
-                    newContext,
-                    this.llmClient,
-                  );
+              // if (event === "popup") {
+              //   return this.context.on("page", async (page: PlaywrightPage) => {
+              //     const newContext = await StagehandContext.init(
+              //       page.context(),
+              //       stagehand,
+              //     );
+              //     const newStagehandPage = new StagehandPage(
+              //       page,
+              //       stagehand,
+              //       newContext,
+              //       this.llmClient,
+              //     );
 
-                  await newStagehandPage.init();
-                  listener(newStagehandPage.page);
-                });
-              }
+              //     await newStagehandPage.init();
+              //     listener(newStagehandPage.page);
+              //   });
+              // }
               this.intContext.setActivePage(this);
               return target.on(event, listener);
             };

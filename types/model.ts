@@ -2,6 +2,11 @@ import type { ClientOptions as AnthropicClientOptions } from "@anthropic-ai/sdk"
 import type { ClientOptions as OpenAIClientOptions } from "openai";
 import { z } from "zod";
 
+interface GoogleClientOptions {
+  apiKey?: string;
+  userProvidedInstructions?: string;
+}
+
 export const AvailableModelSchema = z.enum([
   "gpt-4o",
   "gpt-4o-mini",
@@ -19,13 +24,24 @@ export const AvailableModelSchema = z.enum([
   "cerebras-llama-3.1-8b",
   "groq-llama-3.3-70b-versatile",
   "groq-llama-3.3-70b-specdec",
+  "gemini-2.0-flash-lite",
+  "gemini-2.0-flash",
+  "gemini-2.5-pro-exp-03-25",
 ]);
 
 export type AvailableModel = z.infer<typeof AvailableModelSchema>;
 
-export type ModelProvider = "openai" | "anthropic" | "cerebras" | "groq";
+export type ModelProvider =
+  | "openai"
+  | "anthropic"
+  | "cerebras"
+  | "groq"
+  | "google";
 
-export type ClientOptions = OpenAIClientOptions | AnthropicClientOptions;
+export type ClientOptions =
+  | OpenAIClientOptions
+  | AnthropicClientOptions
+  | GoogleClientOptions;
 
 export interface AnthropicJsonSchemaObject {
   definitions?: {

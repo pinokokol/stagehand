@@ -10,6 +10,7 @@ import { CerebrasClient } from "./CerebrasClient";
 import { GroqClient } from "./GroqClient";
 import { LLMClient } from "./LLMClient";
 import { OpenAIClient } from "./OpenAIClient";
+import GoogleClient from "./GoogleClient";
 import {
   UnsupportedModelError,
   UnsupportedModelProviderError,
@@ -32,6 +33,9 @@ const modelToProviderMap: { [key in AvailableModel]: ModelProvider } = {
   "cerebras-llama-3.1-8b": "cerebras",
   "groq-llama-3.3-70b-versatile": "groq",
   "groq-llama-3.3-70b-specdec": "groq",
+  "gemini-2.0-flash-lite": "google",
+  "gemini-2.0-flash": "google",
+  "gemini-2.5-pro-exp-03-25": "google",
 };
 
 export class LLMProvider {
@@ -103,6 +107,12 @@ export class LLMProvider {
           logger: this.logger,
           enableCaching: this.enableCaching,
           cache: this.cache,
+          modelName,
+          clientOptions,
+        });
+      case "google":
+        return new GoogleClient({
+          logger: this.logger,
           modelName,
           clientOptions,
         });

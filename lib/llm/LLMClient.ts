@@ -77,6 +77,10 @@ export type LLMResponse = {
     completion_tokens: number;
     total_tokens: number;
   };
+  data?: {
+    completed?: string;
+    progress?: number;
+  };
 };
 
 export interface CreateChatCompletionOptions {
@@ -86,7 +90,7 @@ export interface CreateChatCompletionOptions {
 }
 
 export abstract class LLMClient {
-  public type: "openai" | "anthropic" | "cerebras" | "groq" | string;
+  public type: "openai" | "anthropic" | "cerebras" | "groq" | "google" | string;
   public modelName: AvailableModel;
   public hasVision: boolean;
   public clientOptions: ClientOptions;
